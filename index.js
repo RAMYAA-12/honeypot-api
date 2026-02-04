@@ -25,6 +25,10 @@ app.use(limiter);
  * ✅ RAW BODY PARSER (accepts ANY payload)
  * This MUST be the ONLY body parser
  */
+// Accept JSON bodies (including empty {})
+app.use(express.json({ strict: false }));
+
+// ALSO accept raw text (honeypot behavior)
 app.use(express.text({ type: '*/*' }));
 
 // Health check
@@ -84,3 +88,4 @@ const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {
   console.log(`Honeypot running on port ${PORT}`);
 });
+
