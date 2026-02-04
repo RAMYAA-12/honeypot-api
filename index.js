@@ -65,8 +65,23 @@ app.get('/info', (req, res) => {
   });
 });
 
+// Root route (optional)
+app.get('/', (req, res) => {
+  res.json({
+    message: "Honeypot API is running",
+    endpoints: [
+      "/health",
+      "/honeypot",
+      "/admin",
+      "/info"
+    ]
+  });
+});
+
+
 
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {
   console.log(`Honeypot running on port ${PORT}`);
 });
+
