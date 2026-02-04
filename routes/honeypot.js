@@ -17,15 +17,12 @@ router.post('/', (req, res) => {
     ipRisk[ip].attempts++;
 
     // Handle payload safely
-    let payload = req.body;
-    if (typeof req.body === 'string') {
-      try {
-        payload = JSON.parse(req.body);
-      } catch {
-        payload = { raw_payload: req.body };
-      }
-    }
+   let payload = req.body;
 
+// Normalize empty body
+if (!payload || payload === '') {
+  payload = {};
+}
     // Attack detection
     const attackRegex = /select|union|drop|<script>|--|\bor\b\s+1=1/i;
     const payloadString = JSON.stringify(payload);
