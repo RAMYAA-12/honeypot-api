@@ -28,9 +28,6 @@ app.use(limiter);
 // Accept JSON bodies (including empty {})
 app.use(express.json({ strict: false }));
 
-// ALSO accept raw text (honeypot behavior)
-app.use(express.text({ type: '*/*' }));
-
 // Health check
 app.get('/health', (req, res) => {
   res.json({ status: "up" });
@@ -88,4 +85,5 @@ const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {
   console.log(`Honeypot running on port ${PORT}`);
 });
+
 
