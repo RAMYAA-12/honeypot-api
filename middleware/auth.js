@@ -1,6 +1,6 @@
 module.exports = function (req, res, next) {
 
-  // ✅ Allow CORS preflight requests (tester requirement)
+  // Allow CORS preflight
   if (req.method === 'OPTIONS') {
     return res.sendStatus(200);
   }
